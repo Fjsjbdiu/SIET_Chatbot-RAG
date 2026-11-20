@@ -24,7 +24,7 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
       chunks.(chunk)
      start = chunksize - overlap #500=400    900-100=800   1300-100=1200
     return chunk
-      #Embedding:
+#Embedding:
       def build_vectors (chunks, model_name = "all-MiniLM-L6-v2"):
         if not chunks:
           raise ValueError("Cannect apply embedding without chunks")
