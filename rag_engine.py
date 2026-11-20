@@ -6,9 +6,9 @@ from sentence_transformers import SentenceTransformer
 
 #load pdfs
 def load_pdf(pdf_path):
-  reader = PDFReader(str(pdf_path))
+  reader = PdfReader(str(pdf_path))
   mypages = [ i.extract_test() or "" for i in reader.pages]
-  full_text = "\n".join(mypages).strip()
+  full_text = "\n".join(my_pages).strip()
   if not full_text:
     raise ValueError("No readable Text Found"
   return full_text
@@ -22,8 +22,8 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
     chunk = full_text[start:end]  #[0:500]   [400:900]     [800:130]
     if chunk.strip():
       chunks.(chunk)
-      start = chunksize - overlap #500=400    900-100=800   1300-100=1200
-      return chunk
+     start = chunksize - overlap #500=400    900-100=800   1300-100=1200
+    return chunk
       #Embedding:
       def build_vectors (chunks, model_name = "all-MiniLM-L6-v2"):
         if not chunks:
@@ -42,7 +42,7 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
 #retrieve
 def retrieve_content (question, embedd_model, chunks, index, num_chunks=3):
   if not question.strip()
-  raise ValueError("Question cannot be blank")
+    raise ValueError("Question cannot be blank")
   if num_chunks < 1:
     raise ValueError("Request atleast one or more chunks")
   query_embed = embed_model.encode([question], conver_to_numpy=True)
@@ -55,21 +55,21 @@ def retrieve_content (question, embedd_model, chunks, index, num_chunks=3):
   return background
 
 #Ask
-def ask_rag (question, embed_model, chunks, index, api_key, num_chunks, model_name = ()
+def ask_rag (question, embed_model, chunks, index, api_key, num_chunks, model_name = "openai/openai/gpt-oss-120b"
   key = api_key
   if not key:
     raise ValueError("API key Missing")
-  background = retrieve_content(quetion, embed_model, chunks, index, num_chunks=()
+  background = retrieve_content(quetion, embed_model, chunks, index, num_chunks=3)
   prompt = """You are an professional AI Assistant.
   Answer user question using ONLY document background below.
   Do not invent or assume facts.
   If information not availabele, simply say Information Missing.
   Document Background:""" + background + "Usear Question" + question + "Answer:"
 client = Groq(api_key = key)
-response = client .chat.completions.create
+response = client .cha"openai/gpt-oss-120b"t.completions.create
 model = model_name,
 messeges = [{"role": "user,
              "cotent" : prompt}],
               temprature = 0.3,
 )
-return responce.choicse[0].messege.content
+return responce.choices[0].message.content
