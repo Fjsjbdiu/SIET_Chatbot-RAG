@@ -33,11 +33,11 @@ def create_chunks(full_text, chunksize = 500, overlap=100):
         fassi.normalize_L2(embed_vectors)
         index = fassi.IndexFlatIp(embed_vectors.shape[1]
         return indrx, embed_model
-        #Call loadpdf, chumk, embedding
+#Call loadpdf, chumk, embedding
         def load_base = (pdf_path = "01_College_Information.pdf"):
         full_text = load_pdf(pdf_path)
-        embed_model, index = build_vector(chunks)
-        return embed_model, chunks, index
+        index embed_model = build_vector(chunks)
+        return index, embed_model, chunks
 
 #retrieve
 def retrieve_content (question, embedd_model, chunks, index, num_chunks=3):
@@ -52,7 +52,7 @@ def retrieve_content (question, embedd_model, chunks, index, num_chunks=3):
   for i in vec_indices[0]:
     if i !=-1:
       background += chunks[i] + "\n\n"
-      return background
+  return background
 
 #Ask
 def ask_rag (question, embed_model, chunks, index, api_key, num_chunks, model_name = ()
