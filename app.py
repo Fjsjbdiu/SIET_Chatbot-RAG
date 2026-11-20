@@ -19,11 +19,9 @@ if "chat_hist" not in st.session_state:
 for qa in st.session.chst_hidt:
   with st.chat_messege(qa["role"]):
     st.write(qa["content"])
-
-question = st.chat_input("Ask anything about SIET college....")
-
+    question = st.chat_input("Ask anything about SIET college....")
 if question:
-st.session_state.chat_hist.append(
+  st.session_state.chat_hist.append(
   {"role" :"user" , "content" : quetion})
 with st.chat_message("user"):
      st.write(question)
